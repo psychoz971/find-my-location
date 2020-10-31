@@ -1,6 +1,4 @@
 /node_modules/
-/public/build/
-/public/webfonts/
 
 .DS_Store
 *.bak
