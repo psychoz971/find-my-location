@@ -37,20 +37,20 @@ export default {
     sourcemap: true,
     format: 'iife',
     name: 'app',
-    file: 'public/build/bundle.js'
+    file: 'docs/build/bundle.js'
   },
   plugins: [
     cssOnly({
-      output: 'public/build/vendor/css/bundle.css'
+      output: 'docs/build/vendor/css/bundle.css'
     }),
     copy({
       targets: [{
           src: 'node_modules/@fortawesome/fontawesome-free/webfonts/*',
-          dest: 'public/build/vendor/webfonts'
+          dest: 'docs/build/vendor/webfonts'
         },
         {
           src: 'node_modules/leaflet/dist/images/*',
-          dest: 'public/build/vendor/css/images'
+          dest: 'docs/build/vendor/css/images'
         }
       ]
     }),
@@ -81,7 +81,7 @@ export default {
 
     // Watch the `public` directory and refresh the
     // browser on changes when not in production
-    !production && livereload('public'),
+    !production && livereload('docs'),
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify
