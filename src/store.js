@@ -5,3 +5,4 @@ import {
 export const address = writable('');
 export const locations = writable([]);
 export const mylocation = writable();
+export const loading = writable(false);

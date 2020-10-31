@@ -39,7 +39,6 @@ function mapAction(container) {
   map = createMap(container)
 }
 
-$: console.log($mylocation)
 $: addMarker($mylocation)
 </script>
 

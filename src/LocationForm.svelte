@@ -1,22 +1,38 @@
 <script>
-  import { address, locations, mylocation } from './store.js'
+  import { address, locations, mylocation, loading } from './store.js'
 
   function handleSumit(event) {
+    $loading = true;
     if ($address.length > 3) {
       fetch('https://api-adresse.data.gouv.fr/search/?q=' + $address).then(
-        (resp) => {return resp.json()}).then(
-          (data) => {$locations = data.features})
+        (resp) => {
+          if (!resp.ok) {throw resp}
+          return resp.json()}).then(
+          (data) => {
+            $loading = false;
+            $locations = data.features
+          }).catch(e => {
+            $loading = false;
+            alert('Erreur : Impossible de chercher cette adresse');
+          })
     }
   }
 
   function getMyLocation(event) {
+    $loading = true;
     navigator.geolocation.getCurrentPosition(function(position) {
       fetch('https://api-adresse.data.gouv.fr/reverse/?lon=' + position.coords.longitude + '&lat=' + position.coords.latitude).then(
-        (resp) => {return resp.json()}).then(
+        (resp) => {
+          if (!resp.ok) {throw resp}
+          return resp.json()}).then(
           (data) => {
+            $loading = false;
             $locations = data.features
             $address = data.features[0].properties.label
             $mylocation = data.features[0]
+          }).catch(e => {
+            $loading = false;
+            alert('Erreur : Impossible de vous localiser');
           })
     });
   }
