@@ -14,6 +14,7 @@
       fetch('https://api-adresse.data.gouv.fr/reverse/?lon=' + position.coords.longitude + '&lat=' + position.coords.latitude).then(
         (resp) => {return resp.json()}).then(
           (data) => {
+            $locations = data.features
             $address = data.features[0].properties.label
             $mylocation = data.features[0]
           })

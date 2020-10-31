@@ -1,4 +1,5 @@
 <script>
+import '../node_modules/leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import {mylocation} from './store.js'
 let map
@@ -7,7 +8,7 @@ export const mapCenter = [16.2290, -61.4373]
 export const mapZoom = 10
 
 function createMap(container) {
-  let m = L.map(container, {preferCanvas: true }).setView(mapCenter, mapZoom);
+  let m = L.map(container, {preferCanvas: true, scrollWheelZoom: false }).setView(mapCenter, mapZoom);
   L.tileLayer(
     'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
     {
@@ -48,5 +49,6 @@ $: addMarker($mylocation)
 .map {
   width: 100%;
   height: 100%;
+  min-height: 30rem;
 }
 </style>
